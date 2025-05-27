@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Community Event Portal</title>
+  <style>
+    body { font-family: 'Segoe UI'; padding: 20px; background: #f0f0f0; }
+    .card { background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    .hidden { display: none; }
+    #spinner { display: none; color: orange; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Local Community Event Portal</h1>
+
+  <!-- Filter + Search -->
+  <select id="categoryFilter">
+    <option value="">All Categories</option>
+    <option value="Music">Music</option>
+    <option value="Workshop">Workshop</option>
+    <option value="Meetup">Meetup</option>
+  </select>
+  <input type="text" id="searchEvent" placeholder="Search event name..." />
+
+  <!-- Spinner -->
+  <p id="spinner">Loading events...</p>
+
+  <!-- Event Display -->
+  <div id="eventsContainer"></div>
+
+  <!-- Registration Form -->
+  <h2>📝 Register for an Event</h2>
+  <form id="registrationForm">
+    <input name="name" placeholder="Your Name" required />
+    <input name="email" type="email" placeholder="Your Email" required />
+    <select name="eventSelect" required></select>
+    <button id="registerBtn" type="submit">Register</button>
+    <p id="formMsg"></p>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

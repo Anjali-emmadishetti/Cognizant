@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 5 All Exercises</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .fixed-footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .badge-over-image {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .image-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="bg-light text-dark">
+
+<div class="container py-4">
+  <!-- 1. Bootstrap Grid Example -->
+  <h2>Responsive Grid</h2>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 bg-primary text-white p-3">Column 1</div>
+    <div class="col-12 col-sm-6 col-md-4 bg-secondary text-white p-3">Column 2</div>
+    <div class="col-12 col-sm-6 col-md-4 bg-success text-white p-3">Column 3</div>
+  </div>
+
+  <!-- 2. Sidebar Layout -->
+  <h2 class="mt-5">Two Column Layout</h2>
+  <div class="row">
+    <div class="col-md-3 bg-warning p-3">Sidebar</div>
+    <div class="col-md-9 bg-info p-3 text-white">Content</div>
+  </div>
+
+  <!-- 3. Typography -->
+  <h2 class="mt-5 display-4">Typography Showcase</h2>
+  <p class="lead text-muted fw-bold text-uppercase">This is a lead text with uppercase.</p>
+
+  <!-- 4. Forms -->
+  <h2 class="mt-5">Forms</h2>
+  <form>
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control">
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox">
+      <label class="form-check-label">Accept Terms</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+      <label for="floatingEmail">Email address</label>
+    </div>
+    <button class="btn btn-primary">Register</button>
+  </form>
+
+  <!-- 5. Buttons -->
+  <h2 class="mt-5">Buttons</h2>
+  <button class="btn btn-primary">Primary</button>
+  <button class="btn btn-outline-danger">Outline</button>
+  <div class="btn-group mt-2">
+    <input type="checkbox" class="btn-check" id="btn-check1">
+    <label class="btn btn-secondary" for="btn-check1">Toggle</label>
+  </div>
+
+  <!-- 6. Navbar -->
+  <h2 class="mt-5">Navbar</h2>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark d-flex flex-column flex-md-row">
+    <a class="navbar-brand" href="#">Logo</a>
+    <form class="d-flex ms-auto">
+      <input class="form-control me-2" type="search" placeholder="Search">
+      <button class="btn btn-outline-light">Search</button>
+    </form>
+  </nav>
+
+  <!-- 7. Card -->
+  <h2 class="mt-5">Card</h2>
+  <div class="card shadow-lg rounded-pill w-50">
+    <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle" alt="Profile">
+    <div class="card-body text-center">
+      <h5 class="card-title">Jane Doe</h5>
+      <p class="card-text">Web Developer & Designer</p>
+    </div>
+  </div>
+
+  <!-- 8. Media Object -->
+  <h2 class="mt-5">Media Object</h2>
+  <div class="d-flex">
+    <img src="https://via.placeholder.com/64" class="me-3" alt="...">
+    <div>
+      <h5>Media heading</h5>
+      <p>This is the media body with aligned image to the left.</p>
+    </div>
+  </div>
+
+  <!-- 9. Spacing & Colors -->
+  <h2 class="mt-5">Spacing & Backgrounds</h2>
+  <div class="bg-primary text-white m-3 p-3">Primary Section</div>
+  <div class="bg-dark text-white bg-gradient p-3">Gradient Dark Section</div>
+
+  <!-- 10. Visibility -->
+  <h2 class="mt-5">Responsive Visibility</h2>
+  <div class="d-none d-md-block bg-success text-white p-3">Visible on MD and up</div>
+  <div class="d-none d-lg-flex bg-danger text-white p-3">Visible on LG and up</div>
+
+  <!-- 11. Positioning -->
+  <h2 class="mt-5">Positioning Utilities</h2>
+  <div class="image-wrapper">
+    <img src="https://via.placeholder.com/150" alt="Badge Img">
+    <span class="badge bg-danger badge-over-image">New</span>
+  </div>
+
+  <!-- 12. Icons -->
+  <h2 class="mt-5">Bootstrap Icons</h2>
+  <footer class="d-flex gap-3">
+    <i class="bi bi-facebook fs-3"></i>
+    <i class="bi bi-twitter fs-3"></i>
+    <i class="bi bi-instagram fs-3"></i>
+  </footer>
+  <button class="btn btn-outline-dark mt-2"><i class="bi bi-check-circle"></i></button>
+
+  <!-- 13. Modal -->
+  <h2 class="mt-5">Modal Example</h2>
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Launch Modal</button>
+  <div class="modal fade" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Hello Modal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">Welcome to Bootstrap modal!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. Accordion -->
+  <h2 class="mt-5">Accordion</h2>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Accordion Item #1</button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show">
+        <div class="accordion-body">This is the first item's content.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="bg-dark text-white text-center p-3 fixed-footer">Fixed Footer</div>
+
+<!-- Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

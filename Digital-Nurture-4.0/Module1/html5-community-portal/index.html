@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community Event Portal</title>
+  
+  <!-- Internal CSS -->
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    nav {
+      background: #007BFF;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    #welcomeBanner {
+      background: lightblue;
+      padding: 15px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .highlight {
+      color: green;
+      font-weight: bold;
+    }
+    .gallery img {
+      border: 3px solid #555;
+      width: 150px;
+      height: 100px;
+    }
+    form {
+      margin-top: 30px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    video {
+      margin-top: 20px;
+      width: 100%;
+    }
+    .outputMsg {
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
+
+  <script>
+    // Feedback char counter
+    function countChars(e) {
+      document.getElementById("charCount").textContent = e.target.value.length;
+    }
+
+    // Form confirmation
+    function confirmSubmit() {
+      document.getElementById("confirmation").value = "🎉 Thank you for registering!";
+    }
+
+    // Phone blur validation
+    function validatePhone(input) {
+      const regex = /^\d{10}$/;
+      if (!regex.test(input.value)) {
+        alert("Invalid phone number. Enter 10 digits.");
+      }
+    }
+
+    // Show event fee on change
+    function showFee(select) {
+      let fee = select.value === "Concert" ? "$50" : select.value === "Workshop" ? "$30" : "$10";
+      document.getElementById("eventFee").textContent = "Fee: " + fee;
+    }
+
+    // Double click to enlarge image
+    function enlargeImage(img) {
+      img.style.width = "300px";
+      img.style.height = "200px";
+    }
+
+    // Video ready to play
+    function videoReady() {
+      alert("🎬 Video ready to play!");
+    }
+
+    // Warn before leaving
+    window.onbeforeunload = function () {
+      return "Are you sure you want to leave? Changes might not be saved.";
+    };
+
+    // Save preference
+    function savePref(select) {
+      localStorage.setItem("preferredEvent", select.value);
+    }
+
+    // Load saved preference
+    window.onload = function () {
+      const pref = localStorage.getItem("preferredEvent");
+      if (pref) {
+        document.getElementById("eventType").value = pref;
+        showFee(document.getElementById("eventType"));
+      }
+    };
+
+    // Clear all storage
+    function clearStorage() {
+      localStorage.clear();
+      sessionStorage.clear();
+      alert("Preferences cleared!");
+    }
+
+    // Geolocation
+    function findNearby() {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          document.getElementById("geo").textContent =
+            `📍 Lat: ${pos.coords.latitude}, Lon: ${pos.coords.longitude}`;
+        },
+        (err) => {
+          alert("Location error: " + err.message);
+        },
+        { enableHighAccuracy: true, timeout: 5000 }
+      );
+    }
+  </script>
+</head>
+<body>
+
+  <!-- 🧭 Navigation -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Contact</a>
+    <a href="help.html" target="_blank">Help</a>
+  </nav>
+
+  <!-- 🎉 Welcome Banner -->
+  <div id="welcomeBanner">
+    <h2>Welcome, Community Member!</h2>
+    <p>Don't miss the <span style="color:red; font-weight:bold;">Early Bird Offers</span> 🎁</p>
+  </div>
+
+  <!-- 📸 Image Gallery -->
+  <section id="gallery" class="gallery">
+    <h3>📷 Past Events</h3>
+    <table>
+      <caption>Community Highlights</caption>
+      <tr>
+        <td><img src="https://via.placeholder.com/150" alt="Music Fest" title="Music Fest" ondblclick="enlargeImage(this)"></td>
+        <td><img src="https://via.placeholder.com/150" alt="Farm Market" title="Farm Market" ondblclick="enlargeImage(this)"></td>
+        <td><img src="https://via.placeholder.com/150" alt="Park Cleanup" title="Park Cleanup" ondblclick="enlargeImage(this)"></td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/150" alt="Craft Workshop" title="Craft Workshop" ondblclick="enlargeImage(this)"></td>
+        <td><img src="https://via.placeholder.com/150" alt="Open Mic" title="Open Mic" ondblclick="enlargeImage(this)"></td>
+        <td><img src="https://via.placeholder.com/150" alt="Volunteer Day" title="Volunteer Day" ondblclick="enlargeImage(this)"></td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 📝 Registration Form -->
+  <section id="events">
+    <h3>🎫 Event Registration</h3>
+    <form onsubmit="confirmSubmit(); return false;">
+      <label>Name: <input type="text" placeholder="Your Name" required autofocus></label><br><br>
+      <label>Email: <input type="email" placeholder="you@example.com" required></label><br><br>
+      <label>Phone: <input type="text" placeholder="1234567890" onblur="validatePhone(this)"></label><br><br>
+      <label>Date: <input type="date" required></label><br><br>
+      <label>Event Type:
+        <select id="eventType" onchange="showFee(this); savePref(this);">
+          <option value="">Select</option>
+          <option value="Concert">Concert</option>
+          <option value="Workshop">Workshop</option>
+          <option value="Meetup">Meetup</option>
+        </select>
+      </label>
+      <p id="eventFee" class="highlight"></p>
+      <br>
+      <label>Message:</label><br>
+      <textarea rows="4" cols="40" onkeyup="countChars(event)"></textarea><br>
+      <span>Characters typed: <span id="charCount">0</span></span><br><br>
+      <button type="submit">Submit</button>
+      <output id="confirmation" class="outputMsg"></output>
+    </form>
+  </section>
+
+  <!-- 🎥 Video Invite -->
+  <section>
+    <h3>🎥 Event Promo Video</h3>
+    <video controls oncanplay="videoReady()">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  </section>
+
+  <!-- 🧭 Geolocation -->
+  <section>
+    <button onclick="findNearby()">Find Nearby Events</button>
+    <p id="geo"></p>
+  </section>
+
+  <!-- 🧹 Clear Storage -->
+  <section>
+    <button onclick="clearStorage()">Clear Preferences</button>
+  </section>
+
+  <!-- 📞 Contact -->
+  <section id="contact">
+    <h3>📬 Contact Us</h3>
+    <p>Email: info@communityportal.org</p>
+  </section>
+
+  <!-- 🔚 Footer -->
+  <footer>
+    <p>&copy; 2025 Local Community Portal</p>
+  </footer>
+
+</body>
+</html>
